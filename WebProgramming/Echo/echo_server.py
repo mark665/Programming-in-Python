@@ -34,6 +34,6 @@ while True:
     client, address = s.accept()
     data = client.recv(size) 
     if data: 
-        client.send('Mark Price: %s' % data) 
+        client.send('mark665: %s' % data) 
     print 'from %s: %s' % (address, data)
     client.close()
