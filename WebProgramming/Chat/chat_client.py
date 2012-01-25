@@ -28,29 +28,21 @@ s = socket.socket(socket.AF_INET,
                       socket.SOCK_STREAM) 
 s.connect((host,port))
 
-#open socket for recieving from the server
-backlog = 5
-r = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+input = [s, sys.stdin]
 
-# Release listener socket immediately when program exits, 
-# avoid socket.error: [Errno 48] Address already in use
-r.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
-r.bind((host,port))
-r.listen(backlog)
-
-input = [r,sys.stdin]
-
+print "Enter text to send : "
 while True :
-    print "Enter test to send : "
     inputready,outputready,exceptready = select.select(input,[],[],timeout)
-    for input in inputready:
-        if input == sys.stdin:
-            text = str(raw_input())
-            s.send(text)
-        if input == r:
-            print r.recv(size)
-            
-s.close()
-r.close
+    for selectInput in inputready:
+        if selectInput == sys.stdin:
+            text = str(raw_input('> '))
+            if text : 
+                s.send(text) 
+            else :
+                s.close() 
+                break        
+        if selectInput == s:
+            text = s.recv(size)
+            print text
+
 

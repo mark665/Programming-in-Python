@@ -63,9 +63,10 @@ while running:
 
         elif s: # client socket
             data = s.recv(size)
-            #print '%s: %s' % (s.getpeername(), data.strip('\n'))
+            print '%s: %s' % (s.getpeername(), data.strip('\n'))
             if data:
                 for c in clients :
+                    print 'sending : %s: %s' % (c.getpeername(), data.strip('\n'))
                     c.send('%s: %s' % (s.getpeername(), data))
             else:
                 s.close()
