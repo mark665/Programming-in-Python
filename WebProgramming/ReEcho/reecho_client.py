@@ -21,14 +21,18 @@ if nargs > 1:
 if nargs > 2:
     port = int(sys.argv[2])
 
-while True :
-    s = socket.socket(socket.AF_INET, 
+s = socket.socket(socket.AF_INET, 
                       socket.SOCK_STREAM) 
-    s.connect((host,port))
-    print "Enter test to send : "
-    text = str(raw_input())
-    s.send(text) 
-    data = s.recv(size) 
-    s.close() 
-    print 'from (%s,%s) %s' % (host, port, data)
-
+s.connect((host,port))
+print 'Connection accepted by (%s,%s)' % (host, port)
+print "Enter test to send : "
+while True :
+    text = str(raw_input('> '))
+    if text : 
+        s.send(text) 
+        data = s.recv(size)
+        print data
+    else :
+        s.close() 
+        print 'from (%s,%s) %s' % (host, port, data)
+        break

@@ -32,8 +32,12 @@ s.listen(backlog)
 
 while True: 
     client, address = s.accept()
-    data = client.recv(size) 
-    if data: 
-        client.send('mark665: %s' % data) 
-    print 'from %s: %s' % (address, data)
-    client.close()
+    while True :
+        data = client.recv(size)
+        if data: 
+            client.send('mark665: %s' % data)
+            print 'from %s: %s' % (address, data)
+        else : # no data, client sent empty message
+            client.close()
+            print 'closed connection'
+            break
