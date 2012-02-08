@@ -17,7 +17,7 @@
 
 import os, socket, sys, datetime
 
-defaults = ['127.0.0.1', '8081']
+defaults = ['127.0.0.1', '8088']
 mime_types = {'.jpg' : 'image/jpg', 
              '.gif' : 'image/gif', 
              '.png' : 'image/png',
@@ -99,17 +99,18 @@ def get_file(path):
 def get_content(uri):
     print 'fetching:', uri
     try:
-        path = '.' + uri
-        if (os.path.isfile(path) & (path[-3:] == ".py")) : 
-            print "hell yea"       
+        path = '.' + uri    
         if os.path.isfile(path):
+            if path.endswith ('.py'):
+                output = os.popen('python ' + path).read()
+                return (200,'text/plain', output)
             return (200, get_mime(uri), get_file(path))
         if os.path.isdir(path):
             if(uri.endswith('/')):
                 return (200, 'text/html', list_directory(uri))
             else:
                 return (301, uri + '/')
-        if uri == "/date.html" :
+        if uri.endswith ("date.html") :
             return (200, "text/html", datetime.datetime.now())
 
             
