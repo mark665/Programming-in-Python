@@ -31,6 +31,7 @@ neighbor_request = requestLatLogAddress % (neighborAddress+city+state,sensor)
 
 addressResult = urllib2.urlopen(address_request)
 neighborResult = urllib2.urlopen(neighbor_request)
+
 jsonDataAddress = json.load(addressResult)
 jsonDataNeighbor = json.load(neighborResult)
 
