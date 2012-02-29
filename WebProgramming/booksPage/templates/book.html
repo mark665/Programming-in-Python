@@ -1,0 +1,15 @@
+<!--  This template is really just a static HTML page -->
+<title>Book List</title>
+</head>
+<body>
+<h1>{{ thisbook['title] }} : </h1>
+<div style="word-wrap: break-word; margin:20px">
+<ul id="navigation">
+{% for item in thisBook %}
+<li>{{ thisBook['item'] }} </li>
+{% endfor %}
+</ul>
+</div>
+</form>
+</body>
+</html>
