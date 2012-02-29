@@ -2,11 +2,11 @@
 <title>Book List</title>
 </head>
 <body>
-<h1>{{ thisbook['title] }} : </h1>
+<h1>{{ thisBook['title'] }} : </h1>
 <div style="word-wrap: break-word; margin:20px">
 <ul id="navigation">
 {% for item in thisBook %}
-<li>{{ thisBook['item'] }} </li>
+<li>{{ item }} : {{ thisBook[item] }} </li>
 {% endfor %}
 </ul>
 </div>

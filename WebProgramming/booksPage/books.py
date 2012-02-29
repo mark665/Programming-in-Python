@@ -26,18 +26,9 @@ def bookList():
 
 @app.route('/abook/<book_id>')
 def bookInfo(book_id):
-    return render_template('book.html', thisBook=booksDB.title_info(book_id))
-
+    return render_template('book.html', thisBook = booksDB.title_info(book_id))
 #    return from_page
-#===============================================================================
-# @app.route('/echo_flask.py')
-# def message_page():
-#    # Flask Quickstart suggests request.form should work, but here it is empty
-#    # Flask converts return string to HTML page
-#    messages.insert(0,request.args['message'])
-#    return render_template('response.html', messages=copy.deepcopy(messages))
-# #    return 'Message: %s' % ("<br> Previous Message : ".join(messages))
-#===============================================================================
+
 
 # No function needed for other routes - Flask will send 404 page
 
