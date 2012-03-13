@@ -1,0 +1,16 @@
+<!--  This template is really just a static HTML page -->
+<title>Echo request</title>
+</head>
+<body>
+<div style="word-wrap: break-word; margin:20px">
+<p>
+Message:
+{{ messages[0] }}
+</p>
+{% for message in messages[1:] %}
+<p> Old Message : {{ message }} </p>
+{% endfor %}
+</div>
+</form>
+</body>
+</html>
